@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>API Fetch Example</title>
+  </head>
+  <body>
+    <h1>API Fetch Example</h1>
+    <button id="fetchButton">Fetch Data</button>
+    <div id="result"></div>
+
+    <script>
+      const fetchButton = document.getElementById("fetchButton");
+      const resultDiv = document.getElementById("result");
+
+      fetchButton.addEventListener("click", () => {
+        fetch("http://INSERTIPADDRESS:5000/api/data")
+          .then((response) => response.json())
+          .then((data) => {
+            resultDiv.textContent = JSON.stringify(data, null, 2);
+          })
+          .catch((error) => {
+            resultDiv.textContent = "Error fetching data.";
+          });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Website</title>
+</head>
+<body>
+  <h1>Search Website</h1>
+  <form id="searchForm">
+    <input type="text" id="searchBar" placeholder="Enter search term">
+    <button type="submit">Search</button>
+  </form>
+
+  <script>
+    document.getElementById('searchForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const searchTerm = document.getElementById('searchBar').value;
+      sendDataToServer(searchTerm);
+    });
+
+    function sendDataToServer(searchTerm) {
+      fetch('http://INSERTIPADDRESS:5000/receive', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ searchQuery: searchTerm }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data.message);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    }
+  </script>
+</body>
+</html>
