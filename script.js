@@ -29,7 +29,7 @@ function searchResources() {
 }
 
 function sendSearchQueryToServer(query) {
-  fetch("http://192.168.5.17:5000/search", {
+  fetch("http://INSERTYOURIP:5000/search", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
